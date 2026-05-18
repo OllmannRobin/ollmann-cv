@@ -1,0 +1,32 @@
+name: React CI
+
+# On dit à GitHub de se lancer à chaque push sur ta branche principale
+on:
+  push:
+    branches: [ main, master ] # Ajuste si ta branche s'appelle autrement
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # On demande une machine Ubuntu toute neuve
+
+    steps:
+    # 1. On récupère le code de ton projet
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. On installe Node.js sur la machine virtuelle
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-size: 20
+        cache: 'npm'
+
+    # 3. On installe tes dépendances (ton package.json)
+    - name: Install dependencies
+      run: npm ci # Le "ci" ici fait une installation propre et rapide
+
+    # 4. LE MOMENT DE VÉRITÉ : On lance tes tests Vitest
+    - name: Run tests
+      run: npm run test -- --run

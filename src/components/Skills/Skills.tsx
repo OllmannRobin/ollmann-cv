@@ -1,27 +1,25 @@
+interface SkillCategory {
+  title: string;
+  skills: string;
+}
+const skillsData: SkillCategory[] = [
+  { title: "Frontend : ", skills: "HTML5, CSS3, JavaScript/TypeScript, Vue.js, React, Redux" },
+  { title: "Backend :", skills: "VB.NET, Node.js" },
+  { title: "Databases :", skills: "MySQL, SQL Server" },
+  { title: "Version Control :", skills: "GitHub" }
+];
 const Skills = function () {
   return (
     <div>
       <h1 className="text-amber-600 font-bold">Skills</h1>
       <div className="pl-2">
         <div className="text-xs">
-          <div className="pt-2 ">
-            <span className="text-gray-500 font-bold">Frontend :</span>
-            <span className="pl-1">
-              HTML5, CSS3, JavaScript, Vue.js, React, Redux
-            </span>
-          </div>
-          <div className="pt-2">
-            <span className="text-gray-500 font-bold">Backend : </span>
-            <span className="pl-1">VB.NET, Node.js</span>
-          </div>
-          <div className="pt-2">
-            <span className="text-gray-500 font-bold">Databases :</span>
-            <span className="pl-1">MySQL, SQL Server</span>
-          </div>
-          <div className="pt-2">
-            <span className="text-gray-500 font-bold">Version Control :</span>
-            <span className="pl-1">GitHub</span>
-          </div>
+          {skillsData.map((item) => (
+            <div key={item.id} className="pt-2 ">
+              <span className="text-gray-500 font-bold">{item.title}</span>
+              <span className="pl-1">{item.skills}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
